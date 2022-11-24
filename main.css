@@ -1,0 +1,29 @@
+ 
+ .container{ 
+
+  width: 100%; 
+  max-width: 1240px;  
+  margin: 0 auto;  
+  padding: 0 20px; 
+  text-align: center; 
+}  
+
+.js-input{ 
+
+    width: 50%;  
+    height: 30px; 
+    border-radius: 5px; 
+    background-color: aqua; 
+    color: #333; 
+    font-size: 15px; 
+    margin-bottom: 10px;
+
+} 
+.js-btn{ 
+
+    width: 50%;  
+    height: 30px; 
+    margin-bottom: 10px; 
+    border-radius: 5px;
+   
+}
