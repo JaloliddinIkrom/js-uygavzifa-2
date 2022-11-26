@@ -9,9 +9,7 @@
 }  
 
 .js-input{ 
-
-    width: 50%;  
-    height: 30px; 
+ 
     border-radius: 5px; 
     background-color: aqua; 
     color: #333; 
@@ -21,8 +19,7 @@
 } 
 .js-btn{ 
 
-    width: 50%;  
-    height: 30px; 
+    
     margin-bottom: 10px; 
     border-radius: 5px;
    
