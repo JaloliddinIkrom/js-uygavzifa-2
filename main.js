@@ -1,7 +1,7 @@
 
  let elForm = document.querySelector(".js-form");
  let elInp = document.querySelector(".js-input");
- let elText = document.querySelector(".js-text") 
+ let elText = document.querySelector(".js-text"); 
   
 
 
@@ -10,28 +10,22 @@
     evt.preventDefault();   
 
     var elInpValue = Number(elInp.value.trim());
-    elText.classList.add("text-primary", "fs-5", "pb-5")
+    elText.classList.add("text-primary", "fs-5", "pb-5");
 
-
-    if(elInpValue == 0 || elInpValue == ""){
-      elText.textContent = "Iltimos raqma kiriting..."
-
-    }else if(elInpValue % 3 == 0 && elInpValue % 5 == 0){ 
+  var newText = "";
      
-       elText.textContent = "Fizz Bazz"
-     }else if(elInpValue % 3 == 0){ 
-     
-       elText.textContent = "Fizz"
-    
-     }else if (elInpValue % 5 == 0){ 
-       elText.textContent = "Bazz"
-     }else { 
-    elText.textContent = "Bu son 3 ga ham 5 ga ham bo'linmaydi"
-        
-     }   
+  if(elInpValue % 3 == 0){ 
 
-     elInp.value = "";
- }) 
+     newText += "Fizz"
+
+  }; 
+  if(elInpValue % 5 == 0){ 
+
+      newText += "Bazz"
+  }; 
+  elText.textContent = newText || elInpValue + "bu son 3-ga ham 5-ga ham bo'linmaydi...";
+
+ }); 
 
 
 //---------------------------------------------------------------2-vazifa----------------------------------------
@@ -45,45 +39,98 @@
   
  let test = Math.round(Math.random() * 50);
  var count = 6;
-
- elResults.textContent = `Urinishlar soni ${count}`; 
+ 
+ elResults.textContent = `Urinishlar soni ${count} ta`; 
+ console.log(test);
 
 elFormGrop.addEventListener("submit", function(evt){ 
-  evt.preventDefault() 
+  evt.preventDefault(); 
     
 
   count--; 
 
-  var elInpVal = Number(elInpput.value);
-  elResults.textContent = `Urinishlar soni ${count}`;  
+  var elInpVal = Number(elInpput.value.trim());
+  elResults.textContent = `Urinishlar soni ${count} ta`;  
   elResults.classList.add("bg-warning", "text-white", "p-3", "mb-4", "mt-3"); 
-  elSpanText.classList.add("bg-primary", "text-white", "p-3", "mt-5")
+  elSpanText.classList.add("bg-primary", "text-white", "p-3", "mt-5");
  
   
    
-  if(elInpVal > 50){ 
-    elSpanText.textContent = "Randum soni 1 va 50 oralg'dan izlang"
+  if(elInpVal > test){ 
+    elSpanText.textContent = "Siz Randum sondan katta raqam kiritingiz...!"
+    elSpanText.classList.remove("alert-warning");
+    elSpanText.classList.add("alert-danger");
   }else if(elInpVal > test){ 
 
-    elSpanText.textContent = "Siz Randum sondan katta son kirittingiz.."
-  }else if(elInpVal < test){ 
-
-    elSpanText.textContent = "Siz Randum sondan kichik son kiritingiz "
-  }else if(elInpVal === test){ 
-     elSpanText.textContent = "Siz Randum son kiritingiz tabriklaymiz ... 🎉😎"
-  }
-  if(count == 0){ 
-
-    elInpput.setAttribute("disabled", true);
+    elSpanText.textContent = "Siz kiritgan raqam Randum raqamdan kichik !"
+    elSpanText.classList.remove("alert-danger");
+    elSpanText.classList.add("alert-warning"); 
+    
+  }else{ 
+    elSpanText.textContent = "Uraaa topdingiz ! 😎";
+    elSpanText.classList.remove("alert-warning");
+    elSpanText.classList.remove("alert-danger");
+    elSpanText.classList.remove("alert-info");
+    elSpanText.classList.add("alert-success");
+    elInpput.disabled = true;
     elButten.setAttribute("disabled", true);
-    elSpanText.textContent = `Siz izlagan son: ${test}`; 
-    elResults.textContent = "Urinishlar soni tugadi qayta urinib ko'ring.."; 
-    elResults.classList.add("d-none");
-  }
-  elInpput.value = "";
-  
-})
+  };
+  if(count == 0 && elInpVal == test){ 
 
+    elInpput.disabled = true;
+    elButten.setAttribute("disabled", true);
+    elSpanText.classList.add("alert-success");
+    elResults.classList.add("alert-danger");
+    elSpanText.textContent = "Yutdingiz  ! 😎";
+    elResults.textContent = "Urinishlar soni tugadi";
+  }else if(count == 0){ 
+
+    elInpput.disabled = true;
+    elButten.setAttribute("disabled", true);
+    elSpanText.classList.add("alert-danger");
+    elResults.classList.add("alert-danger");
+    elSpanText.textContent = "Yutqizdingiz  ! 😥";
+    elResults.textContent = "Urinishlar soni tugati";
+  }
+ 
+  
+}); 
+ 
+
+// =====================================================================================================
+
+let elFormCurrency = document.querySelector(".js-form_currency");
+let elInpCurrency = document.querySelector(".js-input-currency"); 
+let elSelect = document.querySelector(".js-select");
+let elResaltyus = document.querySelector(".js-results"); 
+ 
+
+var DOLLAR_CURRENCY = 10935;
+var RUBLE_CURRENCY = 180;
+var EURO_CURRENCY = 10870;
+ 
+elFormCurrency.addEventListener("submit", function(evt){ 
+ 
+    evt.preventDefault();
+
+    var inpiVal = elInpCurrency.value; 
+    var selectVal = elSelect.value; 
+
+    if(selectVal == 'dolor'){ 
+
+        elResaltyus.textContent = Math.round((inpiVal * DOLLAR_CURRENCY)) + ". so'm"; 
+        
+    }else if(selectVal == 'ruble'){ 
+
+        elResaltyus.textContent = Math.round((inpiVal * RUBLE_CURRENCY)) + ". so'm";
+    }else if (selectVal == 'euro'){ 
+
+        elResaltyus.textContent = Math.round((inpiVal * EURO_CURRENCY)) + ". so'm";
+    }
+    
+
+    elResaltyus.classList.add("bg-primary", "text-white", "p-3");
+});
 
 
 
